@@ -32,17 +32,21 @@ jobs:
         run: |
           wget https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt
           wget https://gitee.com/harvey520/www.yaozuopan.top/raw/master/blacklist.txt
-          cat ./trackers_all.txt >> temp_all.txt
+          cat ./trackers_all.txt > temp_all.txt
+          echo "" >> temp_all.txt
           cat ./all.txt >> temp_all.txt
+          echo "" >> temp_all.txt
           cat ./blacklist.txt >> temp_all.txt
-          sort temp_all.txt | grep  "//" | uniq | sed 's/$/\n/g' > merge_all.txt
+          echo "" >> temp_all.txt
+          sort temp_all.txt | grep  "//" | uniq  > merge_all_crowded.txt
+          sed 's/$/\n/g' merge_all_crowded.txt > merge_all.txt
           TRACKER_COUNT=`grep "//" merge_all.txt | wc -l`
           echo "共有tracker $TRACKER_COUNT 条!" >> $GITHUB_STEP_SUMMARY
           git status
-          git add merge_all.txt
+          git add merge_all_crowded.txt merge_all.txt 
           git config --local user.email "Loyolichoo@example.com"
           git config --local user.name "Github Actions"
-          git commit -m "Auto update by Gayhub Actions"
+          git commit -m "Auto update by Gayhub Actions for $TRACKER_COUNT items"
           echo "git add finish..."
           git status
           git push -v
