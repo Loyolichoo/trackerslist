@@ -36,5 +36,10 @@ jobs:
           sort temp_all.txt | grep  "//" | uniq | sed 's/$/\n/g' > merge_all.txt
           TRACKER_COUNT=`grep "//" merge_all.txt | wc -l`
           echo "共有tracker $TRACKER_COUNT 条!" >> $GITHUB_STEP_SUMMARY
+          git status
           git add merge_all.txt
-          git push
+          echo "git add finish..."
+          git status
+          git push -v
+          git status
+          echo "完成！"
