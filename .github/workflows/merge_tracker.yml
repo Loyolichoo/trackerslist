@@ -33,11 +33,15 @@ jobs:
           wget https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt
           wget https://gitee.com/harvey520/www.yaozuopan.top/raw/master/blacklist.txt
           cat ./trackers_all.txt > temp_all.txt
+          head -n 30 trackers_all.txt
           echo "" >> temp_all.txt
           cat ./all.txt >> temp_all.txt
+          head -n 30 ./all.txt
           echo "" >> temp_all.txt
           cat ./blacklist.txt >> temp_all.txt
+          head -n 30 ./blacklist.txt
           echo "" >> temp_all.txt
+          head -n 30 temp_all.txt
           sort temp_all.txt | grep  "//" | uniq  > merge_all_crowded.txt
           sed 's/$/\n/g' merge_all_crowded.txt > merge_all.txt
           TRACKER_COUNT=`grep "//" merge_all.txt | wc -l`
