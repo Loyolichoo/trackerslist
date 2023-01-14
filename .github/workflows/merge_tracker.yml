@@ -38,6 +38,7 @@ jobs:
           echo "共有tracker $TRACKER_COUNT 条!" >> $GITHUB_STEP_SUMMARY
           git status
           git add merge_all.txt
+          git commit
           echo "git add finish..."
           git status
           git push -v
