@@ -30,9 +30,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          wget https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt -o TrackersListCollection_all.txt
+          wget https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt
           cp all.txt temp_all.txt
-          cat trackers_all.txt.txt >> temp_all.txt
+          ls -al
+          cat ./trackers_all.txt.txt >> temp_all.txt
           sort temp_all.txt | grep  "//" | uniq | sed 's/$/\n/g' > merge_all.txt
           TRACKER_COUNT=`grep "//" merge_all.txt | wc -l`
           echo "共有tracker $TRACKER_COUNT 条!" >> $GITHUB_STEP_SUMMARY
